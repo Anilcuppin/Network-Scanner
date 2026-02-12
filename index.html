@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetScan - Network Scanner Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Background effects -->
+    <div class="grid-bg"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect
+              x="2"
+              y="2"
+              width="28"
+              height="28"
+              stroke="url(#grad1)"
+              stroke-width="2"
+              rx="4"
+            />
+            <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="url(#grad2)" />
+            <circle cx="16" cy="16" r="3" fill="#0ff" />
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+                <stop offset="0%" style="stop-color: #0ff; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #f0f; stop-opacity: 1" />
+              </linearGradient>
+              <linearGradient id="grad2" x1="0" y1="0" x2="32" y2="32">
+                <stop offset="0%" style="stop-color: #0ff; stop-opacity: 0.3" />
+                <stop
+                  offset="100%"
+                  style="stop-color: #f0f; stop-opacity: 0.3"
+                />
+              </linearGradient>
+            </defs>
+          </svg>
+          <h1>NetScan</h1>
+        </div>
+        <nav>
+          <a href="#dashboard" class="nav-link active" data-section="dashboard">
+            <span class="icon">🏠</span> Dashboard
+          </a>
+          <a href="#history" class="nav-link" data-section="history">
+            <span class="icon">📊</span> History
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+      <!-- Dashboard Section -->
+      <section id="dashboard-section" class="section active">
+        <div class="hero">
+          <h2 class="glitch" data-text="Network Scanner">Network Scanner</h2>
+          <p class="subtitle">Discover devices on your network in real-time</p>
+        </div>
+
+        <!-- Scan Control Panel -->
+        <div class="scan-panel glass">
+          <h3>Start New Scan</h3>
+          <div class="input-group">
+            <label for="network-input">Network Range</label>
+            <input
+              type="text"
+              id="network-input"
+              placeholder="e.g., 192.168.1.0/24 or leave empty for auto-detect"
+              class="neon-input"
+            />
+            <small
+              >Enter network CIDR (e.g., 192.168.1.0/24) or leave empty to scan
+              your local network</small
+            >
+          </div>
+          <button id="scan-btn" class="neon-btn">
+            <span class="btn-text">INITIATE SCAN</span>
+            <span class="btn-glow"></span>
+          </button>
+
+          <!-- Loading Animation -->
+          <div id="loading" class="loading hidden">
+            <div class="scanner-animation">
+              <div class="scanner-line"></div>
+              <div class="scanner-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <p>Scanning network... <span id="scan-progress"></span></p>
+          </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div id="results-panel" class="results-panel hidden">
+          <div class="results-header glass">
+            <h3>Scan Results</h3>
+            <div class="stats">
+              <div class="stat-item">
+                <span class="stat-label">Network</span>
+                <span class="stat-value" id="scanned-network">-</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Online Hosts</span>
+                <span class="stat-value neon-text" id="hosts-count">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="hosts-grid" class="hosts-grid"></div>
+        </div>
+      </section>
+
+      <!-- History Section -->
+      <section id="history-section" class="section">
+        <div class="hero">
+          <h2 class="glitch" data-text="Scan History">Scan History</h2>
+          <p class="subtitle">Review past network scans</p>
+        </div>
+
+        <div class="history-panel glass">
+          <div id="history-list" class="history-list">
+            <!-- History items will be populated here -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2026 NetScan by <strong>Synerdyn</strong> | For business
+          inquiries: PA@synerdyn.net
+        </p>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

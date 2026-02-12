@@ -1,0 +1,19 @@
+**Table:** `scan_history`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Primary key (auto-increment) |
+| timestamp | DATETIME | When the scan was performed |
+| network_cidr | VARCHAR(50) | Network scanned (e.g., "192.168.1.0/24") |
+| online_hosts | TEXT | JSON array of discovered hosts |
+| total_hosts | INTEGER | Count of online hosts found |
+
+**Example Record:**
+```json
+{
+  "id": 1,
+  "timestamp": "2026-02-12 17:15:30",
+  "network_cidr": "192.168.1.0/24",
+  "online_hosts": "[{\"ip\":\"192.168.1.1\",\"hostname\":\"router.local\",\"status\":\"online\"}]",
+  "total_hosts": 1
+}
